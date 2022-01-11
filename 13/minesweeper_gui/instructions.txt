@@ -1,0 +1,34 @@
+Ohjelma toteuttaa minesweeper pelin gui liittymän.
+Heti käynnistetynä ohjelma kysyy seed arvo (ennen kuin näyttää pääikkunan).
+Tässä ikkunassa syötetty seed-arvo sijoittuu pääikkunan seed kenttälle.
+Jos käyttäjä painaa "Cancel" ohjelma lopettaa toimintansa. Oletusarvona ikkunassa on nolla, joten jos painaa pelkästään "OK", syöttämättä seed arvoa
+ohjelma käynnistyy seed arvolla 0.
+
+Interfeissi
+Pääikkunassa on kaksi aluetta:
+- pelialue
+- tietoalue
+Tietoalueella on aikalaskuri, joka laskee pelaajan kuluttamaa aikaa. Tietoalueella on mm. syöttökenttä seed arvoa varten, painike "Reset"
+ja lcdNumber kenttä. Jos käyttäjä haluaa alustaa pelin, niin hän voi syöttää syöttökenttään seed arvo ja painaa Reset painiketta.
+lcdNumber kentän tarkoituksena olisi laskea pelaajan saamat pisteet, mutta tämä jäi toteuttamatta.
+Pelialue on toteutettu käyttäen "GridLayout", johon dynaamisesti luodaan painikkeet MainWindow olion konstruktorissa. Painikkeet asetetaan
+QVector rakenteeseen jatkokäsittelyä varten. Jokanen painike on asetettu "setCheckable" -> true. Tämä tarkoittaa sitä, että
+jos käyttäjä painaa tämän painikkeen, niin se jää alaspainetuksi. Alustavasti jokaiseen painikkeen on sijoitettu mustan pisteen kuvio.
+Käyttäjä voi painaa hiiren vasemmalla painikkeella, joka tarkoittaa ruudun avaamista. Jos ruutu avataan, niin kuvio katoa (jos sen alla ei ole räjähdettä).
+Ohjelma avaa aukeavaan ruutuun liittyvät ruudut myös. Jos avattavan ruudun alla on räjähde, ohjelma avaa kaikki ruudut, näyttää
+kaikki räjähteet ja näyttää "MessageBox", jossa kertoo
+pelaajan hävinneen ja kysyy haluaako hän aloittaa uudestaan. Jos pelaaja on avannut
+kaikki "vapaat" ruudut tai asettanut kaikki liput okein ohjelma ilmoittaa voitosta ja kysyy haluaako käyttäjä pelata uudestaan.
+Painamalla hiiren oikealla painikkeella käyttäjä voi asettaa joko lipun tai kysymysmerkin.
+Painamalla yhden kerran hiiren oikealla lippu asettuu ruudun päälle ja vastaava ruutu "minesweeper cli" oliossa vaihtuu liputetuksi. Painamalla hiiren
+oikealla toisen kerran lippu vaihtuu kysymysmerkiksi (minesweeper cli olion ruutu ei ole enää liputettu). Painamalla oikealla kolmannen kerran
+ruutu palauttuu alkuperäiseen tilaan (mustan pisteen kuvio).
+Jos ruutu on valittu, sitä ei voi enää painaa uudestaan. Kerran painettu painike jää siis "upotetuksi".
+Ohjelma toimii "vaihtelevalla tavalla", eli vakio "BOARD SIDE" voidaan muuttaa (muuttaa pelilaudan kokoa).
+
+Ohjelma on suunniteltu niin, että luodaan dynaamisesti painikkeet ja sijoitetaan ne GridLayout rakenteeseen, jolloin ne asettuu tasaisesti
+ja "kauniisti" pelilaudalle. Okean hiiren näppäimen toiminnallisuus QPushButton luokalle oli mahdotonta tehdä ilman, että muuttaa luokan
+QPushButton toiminnallisuutta. Tätä varten minä tein uuden "QExtendedButton" joka on peritty (inherited) tavallisesta QPushButton-luokasta.
+Sen QExtendedButton toiminnallisuudessa ei ole mitään erikoista paitsi, että tämä osaa erotella millä hiiren napilla sitä on painettu.
+"Change size" tämä toiminto toimii, mutta minä en ehtinyt tehdä koon räätälöintiä, joten tämä näyttää aika rumalta. Toivon että saan joitakin pisteitä toimivasta toiminnoista.
+"Check" tämä toiminto antaa käyttäjälle mahdollisuuden tarkistaa montako käyttäjän asettamista lipuista ovat asetettu oikein. Esimerkiksi jos 3:sta lipusta 2 osoittaa oikein, ohjelma sanoo "2 of 3 flags are set right".

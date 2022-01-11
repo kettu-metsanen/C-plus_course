@@ -1,0 +1,23 @@
+#CSV-fields
+#<ID>;<Creation time>;<Size>;<Parent directory>
+
+Prog2;2018-01-01;15;
+Popl;2018-01-01;4;
+Other courses;2020-01-01;30;
+S2021;2021-08-01;7;Prog2
+K2021;2021-01-01;7;Prog2
+S2020;2020-08-01;7;Prog2
+F2020;2020-08-01;10;Popl
+Exercises;2021-08-01;10;S2021
+Projects;2021-08-01;15;S2021
+Exams;2021-08-01;10;S2021
+First submission;2021-08-01;4;Exercises
+Hello world;2021-08-08;3;Exercises
+Random numbers;2021-08-15;6;Exercises
+Tic-tac-toe;2021-09-01;12;Projects
+Education;2021-09-08;12;Projects
+Exam1;2021-12-01;20;Exams
+Exam2;2022-02-01;20;Exams
+Assignment;2021-08-01;9;First submission
+Template code;2021-08-01;11;First submission
+Tests;2021-08-08;10;First submission
